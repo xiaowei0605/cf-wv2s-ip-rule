@@ -9,8 +9,8 @@ dns:
   enhanced-mode: fake-ip
   nameserver:
     - 127.0.0.1
-    - 114.114.114.114
     - 223.5.5.5
+    - 1.0.0.1
 
   fallback-filter:
     geoip: true
