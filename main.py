@@ -5,6 +5,7 @@ addresses_api_path = "addressesapi.txt"
 
 max_item_number = 100
 min_loca_number = 3
+max_loca_number = 50
 default_loca = "US"
 loca_colo: dict[str, list[str]] = {
     "HK": [
@@ -96,7 +97,7 @@ for l in loca_colo.keys():
 			break
 
 for d in data:
-	if not include(data_with_loca, d):
+	if not include(data_with_loca, d) and len(data_with_loca[d.get_loca()]) < max_loca_number:
 		data_with_loca[d.get_loca()].append(d)
 	if get_sum(data_with_loca) >= max_item_number:
 		break
