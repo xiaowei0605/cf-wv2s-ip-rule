@@ -8,13 +8,33 @@ on:
 jobs:
   Update:
     runs-on: ubuntu-latest
+    env:
+      MAX_ITEM: ${{ vars.MAX_ITEM_NUMBER }}
+      MIN_LOCA: ${{ vars.MIN_LOCA_NUMBER }}
+      MAX_LOCA: ${{ vars.MAX_LOCA_NUMBER }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install project
+        run: uv sync --locked --all-extras --dev
+
       - name: Run main.py
-        run: python main.py
+        run: |
+          # 设置默认值逻辑
+          MAX_ITEM=${MAX_ITEM:-100}
+          MIN_LOCA=${MIN_LOCA:-3}
+          MAX_LOCA=${MAX_LOCA:-30}
+
+          # 执行命令并传递参数
+          uv run main.py \
+            --max-item $MAX_ITEM \
+            --min-loca $MIN_LOCA \
+            --max-loca $MAX_LOCA
 
       - name: Commit & Push Changes
         run: |

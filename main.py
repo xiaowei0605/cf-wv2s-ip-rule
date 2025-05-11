@@ -1,11 +1,19 @@
 import requests
 import json
+import argparse
+
+arg_parser = argparse.ArgumentParser("Best CF Addresses Updater")
+arg_parser.add_argument('-maxi', '--max-item', default=100, type=int, help="Max total node number")
+arg_parser.add_argument('-minl', '--min-loca', default=3, type=int, help="Min node number for each loca")
+arg_parser.add_argument('-maxl', '--max-loca', default=30, type=int, help="Max node number for each loca")
+
+args = arg_parser.parse_args()
 
 addresses_api_path = "addressesapi.txt"
 
-max_item_number = 100
-min_loca_number = 3
-max_loca_number = 50
+max_item_number = int(args.max_item)
+min_loca_number = int(args.min_loca)
+max_loca_number = int(args.max_loca)
 default_loca = "US"
 loca_colo: dict[str, list[str]] = {
     "HK": [
