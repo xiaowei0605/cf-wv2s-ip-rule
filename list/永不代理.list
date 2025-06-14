@@ -40,3 +40,5 @@ DOMAIN-SUFFIX,cdn-go.cn
 DOMAIN-SUFFIX,test-ipv6.com
 DOMAIN-SUFFIX,test-ipv4.com
 DOMAIN-SUFFIX,npmmirror.com
+PROCESS-NAME,EpicGamesLauncher.exe
+PROCESS-NAME,EpicWebHelper.exe
